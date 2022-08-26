@@ -1,0 +1,15 @@
+{
+  "name": "puppeteer-codecept-sample",
+  "version": "1.0.0",
+  "description": "CodeceptJS with Puppeteer sample framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Himanshi Gupta",
+  "license": "ISC",
+  "dependencies": {
+    "codeceptjs": "^3.3.5",
+    "puppeteer": "^16.2.0"
+  }
+}

@@ -1,0 +1,20 @@
+---
+version: "0.1"
+globalTimeout: 90
+testSuiteTimeout: 90
+testSuiteStep: 90
+runson: linux
+autosplit: true
+retryOnFailure: false
+maxRetries: 2
+concurrency: 2
+pre:
+  - npm install
+cacheKey: '{{ checksum "package-lock.json" }}'
+cacheDirectories:
+  - node_modules
+testDiscovery:
+  type: raw
+  mode: dynamic
+  command: grep -lr 'Scenario' *test.js
+testRunnerCommand: npx codeceptjs run $test --steps
