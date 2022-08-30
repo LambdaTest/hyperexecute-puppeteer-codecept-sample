@@ -131,7 +131,7 @@ maxRetries: 2
 To leverage the advantage offered by *Dependency Caching* in HyperExecute, the integrity of *package-lock.json* is checked using the checksum functionality.
 
 ```yaml
-cacheKey: '{{ checksum "package-lock.json" }}'
+cacheKey: '{{ checksum "package.json" }}'
 ```
 
 The caching advantage offered by *NPM* can be leveraged in HyperExecute, whereby the downloaded packages can be stored (or cached) in a secure server for future executions. The packages available in the cache will only be used if the checksum stage results in a Pass.
@@ -168,20 +168,6 @@ testRunnerCommand: npx codeceptjs run $test --steps
 
 ### Artifacts Management
 
-The *mergeArtifacts* directive (which is by default *false*) is set to *true* for merging the artifacts and combing artifacts generated under each task.
-
-The *uploadArtefacts* directive informs HyperExecute to upload artifacts [files, reports, etc.] generated after task completion.  In the example, *path* consists of a regex for parsing the directory (i.e. *reports* that contains the test reports).
-
-```yaml
-mergeArtifacts: true
-
-uploadArtefacts:
-  [{
-    "name": "Reports",
-    "path": ["Reports\\"]
-  }]
-
-```
 HyperExecute also facilitates the provision to download the artifacts on your local machine. To download the artifacts, click on *Artifacts* button corresponding to the associated TestID.
 
 ### Test Execution
@@ -239,7 +225,7 @@ testSuites:
 Dependency caching is enabled in the YAML file to ensure that the package dependencies are not downloaded in subsequent runs. The first step is to set the Key used to cache directories.
 
 ```yaml
-cacheKey: '{{ checksum "package-lock.json" }}'
+cacheKey: '{{ checksum "package.json" }}'
 ```
 
 Set the array of files & directories to be cached. In the example, all the packages will be cached in the *CacheDir* directory.
