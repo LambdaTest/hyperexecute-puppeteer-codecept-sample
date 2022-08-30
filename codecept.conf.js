@@ -25,7 +25,8 @@ exports.config = {
   helpers: {
     Puppeteer: {
       chrome: {
-        browserWSEndpoint: `wss://cdp.lambdatest.com/puppeteer?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`
+        browserWSEndpoint: `wss://cdp.lambdatest.com/puppeteer?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
+        "ignoreHTTPSErrors": true
       }
     }
   },
