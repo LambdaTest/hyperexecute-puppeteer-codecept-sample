@@ -9,7 +9,7 @@ matrix:
 runson: ${matrix.os}
 pre:
   - npm install
-cacheKey: '{{ checksum "package-lock.json" }}'
+cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
 testSuites:

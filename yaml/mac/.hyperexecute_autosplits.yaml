@@ -10,7 +10,7 @@ maxRetries: 2
 concurrency: 2
 pre:
   - npm install
-cacheKey: '{{ checksum "package-lock.json" }}'
+cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
 testDiscovery:
