@@ -6,7 +6,7 @@ testSuiteStep: 90
 runson: mac
 autosplit: true
 retryOnFailure: false
-maxRetries: 2
+maxRetries: 1
 concurrency: 2
 pre:
   - npm install
