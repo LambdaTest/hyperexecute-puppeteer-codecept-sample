@@ -18,3 +18,5 @@ testDiscovery:
   mode: dynamic
   command: grep -lr 'Scenario' *test.js
 testRunnerCommand: npx codeceptjs run $test --steps
+
+jobLabel: [puppeteer-CodeceptJS, mac, autosplit]

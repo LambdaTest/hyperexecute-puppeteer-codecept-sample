@@ -14,3 +14,5 @@ cacheDirectories:
   - node_modules
 testSuites:
   - npx codeceptjs run $files --steps
+
+jobLabel: [puppeteer-CodeceptJS, mac, matrix]
