@@ -1,16 +1,18 @@
----
-version: "0.1"
+version: 0.1
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
 
-runson: mac
-
+runson: ${matrix.os}
+retryOnFailure: true
 autosplit: true
-
-retryOnFailure: false
 maxRetries: 1
+parallelism: 1
 concurrency: 2
+
+matrix:
+  os: [linux]
+  files: ["specs/google.spec.js","specs/lt.spec.js"]
 
 pre:
   - npm install
@@ -27,14 +29,17 @@ uploadArtefacts:
 
 report: true
 partialReports:
-  type: json
-  location: /
-  frameworkName: extent
+    type: json
+    location: /
+    frameworkName: extent
 
 testDiscovery:
   type: raw
   mode: dynamic
-  command: grep -lr 'Scenario' *test.js
-testRunnerCommand: npx codeceptjs run $test --steps
+  command: grep -lr 'describe' specs/*.spec.js
+testRunnerCommand: npm test -- $test
 
-jobLabel: [puppeteer-CodeceptJS, mac, autosplit]
+testSuites:
+  - npm test -- $files
+
+jobLabel: [puppeteer-codecept, hybrid]

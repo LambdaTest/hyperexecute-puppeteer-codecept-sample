@@ -1,18 +1,37 @@
 ---
 version: "0.1"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 runson: win
 autosplit: true
 retryOnFailure: false
+
 maxRetries: 1
+
 concurrency: 2
+
 pre:
   - npm install
+
 cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
+
+mergeArtifacts: true
+uploadArtefacts:
+  - name: FinalReport 
+    path:
+    - report/
+
+report: true
+partialReports:
+  type: json
+  location: /
+  frameworkName: extent
+
 testDiscovery:
   type: raw
   mode: dynamic

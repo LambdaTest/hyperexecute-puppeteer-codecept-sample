@@ -1,22 +1,41 @@
----
 version: "0.1"
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 runson: linux
+
 autosplit: true
 retryOnFailure: false
 maxRetries: 1
+
 concurrency: 2
+
 pre:
   - npm install
+
 cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
+
+mergeArtifacts: true
+uploadArtefacts:
+  - name: FinalReport 
+    path:
+    - report/
+
+report: true
+partialReports:
+  type: json
+  location: /
+  frameworkName: extent
+
 testDiscovery:
   type: raw
   mode: dynamic
   command: grep -lr 'Scenario' *test.js
+
 testRunnerCommand: npx codeceptjs run $test --steps
 
 jobLabel: [puppeteer-CodeceptJS, linux, autosplit]
