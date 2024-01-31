@@ -1,17 +1,35 @@
 ---
 version: '0.1'
+
 globalTimeout: 90
 testSuiteTimeout: 90
 testSuiteStep: 90
+
 matrix:
   os: [win]
   files: ["react_app_test.js","todo_test.js"]
+
 runson: ${matrix.os}
+
 pre:
   - npm install
+
 cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
   - node_modules
+
+mergeArtifacts: true
+uploadArtefacts:
+  - name: FinalReport 
+    path:
+    - report/
+
+report: true
+partialReports:
+  type: json
+  location: /
+  frameworkName: extent
+
 testSuites:
   - npx codeceptjs run $files --steps
 
