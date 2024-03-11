@@ -22,7 +22,7 @@ mergeArtifacts: true
 uploadArtefacts:
   - name: FinalReport 
     path:
-    - report/
+    - /
 
 report: true
 partialReports:
