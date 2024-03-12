@@ -1,15 +1,13 @@
 Feature('ToDo');
 
 Scenario('create todo item', ({ I }) => {
-  I.amOnPage('http://todomvc.com/examples/react/');
+  I.amOnPage('https://lambdatest.github.io/sample-todo-app/');
   I.wait(10);
-  I.dontSeeElement('.todo-count');
+  I.fillField('Want to add more', 'Write a guide');
   I.wait(10);
-  I.fillField('What needs to be done?', 'Write a guide');
+  I.click('#addbutton');
   I.wait(10);
-  I.pressKey('Enter');
+  I.see('Write a guide');
   I.wait(10);
-  I.see('Write a guide', '.todo-list');
-  I.wait(10);
-  I.see('1 item left', '.todo-count');
+  I.see('6 of 6 remaining', '.ng-binding');
 });
