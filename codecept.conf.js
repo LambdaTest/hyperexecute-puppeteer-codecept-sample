@@ -6,7 +6,12 @@ setHeadlessWhen(process.env.HEADLESS);
 
 const capabilities = {
   'browserName': 'Chrome',
-  'browserVersion': 'latest',
+  // Pinned to Chrome 135 on purpose. CDP itself still works on newer Chrome, but from
+  // Chrome 136 --remote-debugging-port is ignored when Chrome runs on its default profile
+  // (https://developer.chrome.com/blog/remote-debugging-port). The HyperExecute VM starts
+  // Chrome that way, so with 'latest' the CDP connection never opens. Switch back to
+  // 'latest' once the VM launches Chrome with its own --user-data-dir.
+  'browserVersion': '135',
   'LT:Options': {
     'platform': process.env.HYPEREXECUTE_PLATFORM,
     'build': 'Puppeteer CodeceptJS HyperExecute Build',
@@ -26,7 +31,9 @@ exports.config = {
     Puppeteer: {
       chrome: {
         browserWSEndpoint: `wss://cdp.lambdatest.com/puppeteer?capabilities=${encodeURIComponent(JSON.stringify(capabilities))}`,
-        "ignoreHTTPSErrors": true
+        "ignoreHTTPSErrors": true,
+        // Chrome's privacy sandbox dialog shows up as a page that never attaches and hangs the helper
+        targetFilter: (target) => !target.url().startsWith('chrome://privacy-sandbox-dialog')
       }
     }
   },

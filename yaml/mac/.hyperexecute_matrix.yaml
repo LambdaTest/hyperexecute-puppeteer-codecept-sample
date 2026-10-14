@@ -10,6 +10,10 @@ matrix:
 
 runson: ${matrix.os}
 
+runtime:
+  language: node
+  version: "20"
+
 pre:
   - npm install
 

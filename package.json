@@ -9,7 +9,7 @@
   "author": "Himanshi Gupta",
   "license": "ISC",
   "dependencies": {
-    "codeceptjs": "^3.3.5",
-    "puppeteer": "^16.2.0"
+    "codeceptjs": "^3.7.9",
+    "puppeteer": "24.15.0"
   }
 }

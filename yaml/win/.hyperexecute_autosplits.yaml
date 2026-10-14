@@ -6,6 +6,10 @@ testSuiteTimeout: 90
 testSuiteStep: 90
 
 runson: win
+
+runtime:
+  language: node
+  version: "20"
 autosplit: true
 retryOnFailure: false
 

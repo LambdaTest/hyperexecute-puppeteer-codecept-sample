@@ -1,13 +1,15 @@
 Feature('ToDo');
 
+// on mac the startup tab is closed along with Chrome's privacy sandbox dialog, so use a fresh one
+Before(({ I }) => {
+  I.openNewTab();
+});
+
 Scenario('create todo item', ({ I }) => {
-  I.amOnPage('https://lambdatest.github.io/sample-todo-app/');
-  I.wait(10);
-  I.fillField('Want to add more', 'Write a guide');
-  I.wait(10);
-  I.click('#addbutton');
-  I.wait(10);
-  I.see('Write a guide');
-  I.wait(10);
-  I.see('6 of 6 remaining', '.ng-binding');
+  I.amOnPage('https://todomvc.com/examples/react/dist/');
+  I.waitForElement('.new-todo', 30);
+  I.fillField('.new-todo', 'Write a guide');
+  I.pressKey('Enter');
+  I.see('Write a guide', '.todo-list');
+  I.see('1 item left', '.todo-count');
 });

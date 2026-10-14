@@ -12,9 +12,10 @@ concurrency: 2
 
 matrix:
   os: [linux]
-  files: ["specs/google.spec.js","specs/lt.spec.js"]
 
 pre:
+  # clear the stale Chrome profile lock left in the VM image
+  - rm -f ~/.config/google-chrome/Singleton*
   - npm install
 
 cacheKey: '{{ checksum "package.json" }}'
@@ -23,7 +24,7 @@ cacheDirectories:
 
 mergeArtifacts: true
 uploadArtefacts:
-  - name: FinalReport 
+  - name: FinalReport
     path:
     - /
 
@@ -36,10 +37,7 @@ partialReports:
 testDiscovery:
   type: raw
   mode: remote
-  command: grep -lr 'describe' specs/*.spec.js
-testRunnerCommand: npm test -- $test
-
-testSuites:
-  - npm test -- $files
+  command: grep -lr 'Scenario' *test.js
+testRunnerCommand: npx codeceptjs run $test --steps
 
 jobLabel: [puppeteer-codecept, hybrid]

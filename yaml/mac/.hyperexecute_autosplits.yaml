@@ -6,6 +6,10 @@ testSuiteStep: 90
 
 runson: mac
 
+runtime:
+  language: node
+  version: "20"
+
 autosplit: true
 
 retryOnFailure: false
